@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+  
+<div class="header-bar px-3  pt-4  mx-auto">
+  <div class="formclass  mt-4 mb-4 py-4 ">
+    <a href="{% url 'home' %}"> <button class="btn btn-dark mb-2 border-success">Go Back</button></a>
+
+    <div  class="card text-white bg-dark mb-3 mt-4 pb-4 pt-4 px-4  border-success border-radius-2 mx-auto " >
+
+  <form action="" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      
+      <button type="submit" value="Register" class="btn btn-light border-success hover">Submit</button>
+  
+  </form>
+    </div>
+  </div>
+</div>
+ 
+
+</div>
+</div>
+</div>
+
+{% endblock body %} 

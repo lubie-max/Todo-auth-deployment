@@ -1,0 +1,127 @@
+ 
+{% extends "base.html" %} 
+ 
+{% block searchblock %}
+<form class="d-flex" method="get">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search-area">
+  <button class="btn btn-outline-success" type="submit" value="submit">Search</button>
+</form>
+  
+{% endblock searchblock %}
+
+
+{% block body %}
+
+{% load static %}
+
+
+
+<div class="maincontainer">
+
+  <div class="header-bar">
+    <div>
+              {% if tasks %}
+      <h2>hello {{request.user|title}}</h2>
+      <h3 style="margin: 0;">You have {{count}} incomplete task{{ count|pluralize:"s" }}.</h3>
+      {% endif %}
+    </div>
+  </div>
+
+<div class="container mt-4  mx-auto">
+
+<div class="container my-4">
+  <a href="{% url 'create-task'%} ">
+  <div class="d-grid gap-2 col-6 mx-auto">
+    <button class="btn btn-success" type="button"> Create Task</button>
+  </div>
+</a>
+</div>
+</div>
+<div class="container">
+
+    <table class="table table-dark  table-sm table-borderedless  btn-outline-success ">
+
+              {% if tasks %}
+
+        <thead class="table-dark">
+            <tr class="table">
+            <th scope="col">Sr.No</th>
+            <th scope="col">Title</th>
+            <th scope="col">Operate</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+      {% endif %}
+
+            {% for task in tasks %}
+        <tbody> 
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>
+                {% if task.is_completed %}
+            <strike>
+
+              {{task.title}}
+            </strike>
+            {% else %}
+            {{task.title}}
+            {% endif %}
+            
+          </td>
+            
+          <td>
+            
+ <a href="{% url 'update-task' task.id %}"><button class="btn btn-success btn-sm m-2"> Edit</button></a>
+  <span> &nbsp; </span>
+ 
+<a href="{% url 'delete-task' task.id %}"><button class="btn btn-success btn-sm"> Delete</button></a> 
+<span> &nbsp; </span>
+<a href="{% url 'details' task.id %}"><button class="btn btn-success btn-sm"> View Details</button></a> 
+
+
+          </td>
+          
+
+            <td>
+          
+              <div class="form-check  mx-2  ">
+                {% if task.is_completed %}
+                  Completed
+               
+                
+                 {% else %}
+                   
+                  Not Completed
+                  </label>
+                  {% endif %}
+              </div>
+            </td>
+           
+
+          </tr> 
+         
+        </tbody>
+
+      {% empty %}
+
+      <span>
+        <div class="container fluid bg-dark text-light shadow text-center">
+
+          <h3 class="mx-auto p-3 "> No Tasks Here.</h3>
+          
+        </div>
+      </span>
+      {% endfor %}
+    </table>
+
+    </div>
+
+  </div>
+
+
+{% endblock body %}
+
+
+
+
+

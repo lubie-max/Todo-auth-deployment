@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+<div class="container ">
+  <div class="header-bar px-3  pt-4 ">
+
+       <div class="formbody">
+            
+            <form method="POST" >
+         <a href="{% url 'home' %}"> <button class="btn btn-dark mb-2">Go Back</button></a>
+ {% csrf_token %}
+ <p>
+      Are you sure you want to delete " {{task}}" ?
+ </p>
+ <input type="submit" class="btn btn-success border-dark" value="Delete" />
+</form>
+</div>
+</div>
+</div>
+  
+{% endblock body %}

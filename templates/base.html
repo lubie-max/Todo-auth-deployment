@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Roboto Mono', monospace;
+        /* padding-top: 50px ; */
+        background: rgba(199, 199, 233, 0.062);
+      }
+
+      .maincontainer{
+        /* padding-top: 30px; */
+        /* background: rgb(185, 206, 214); */
+        /* background: linear-gradient(80deg, rgb(42, 140, 153),rgb(3, 89, 122),rgb(14, 188, 211)100%) */
+        bottom: 0px;
+        margin: auto;
+
+        
+      }
+
+      .header-bar{
+        display: flex;
+        justify-content: space-between;
+        color: antiquewhite;
+        padding: 10px;
+        border-radius: 0 0 5px 5px ;
+        background: linear-gradient(80deg, rgb(42, 140, 153),rgb(3, 89, 122),rgb(14, 188, 211) 100% ) ;
+      }
+
+      .formclass{
+        padding: 25px;
+      }
+
+    </style>
+    {% load static %}
+    <title>
+        {% block title %}
+          home
+        {% endblock title %}
+    </title>
+  </head>
+  <body background="{% static 'bg.jpg' %}" >
+    <nav class="navbar navbar-expand-sm text-right navbar-dark bg-dark">
+        <div class="container-fluid text-white mx-3  ">
+
+          {% comment %} <a class="navbar-brand" href="{% static 'myimglogo.png' %}"> Logo Here </a> {% endcomment %}
+          <i class="text-white mx-3">
+          TodoList
+          </i>
+
+          {% if request.user.is_authenticated %}
+<a href="{% url 'logout' %}">
+  <button class="btn btn-sm btn-success"> Logout</button></a>
+
+
+{% else %}
+<a href="{% url 'login' %}">
+  <button class="btn btn-sm btn-success"> Login</button></a>
+  
+  
+{% endif %}
+
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+             
+              <li class="nav-item mt-1 px-3">
+              {% if request.user.is_authenticated %}
+                <button class="btn btn-success btn-sm round-pill ">{{request.user}}</button>
+              {% endif %}
+              </li>
+                <li>
+                  <span> &nbsp; </span>
+                </li>
+              
+              
+            </ul>
+            {% block searchblock %}
+            
+              
+            {% endblock searchblock %}
+            
+          </div>
+        </div>
+      </nav>
+
+      {% block body %}
+
+{% endblock body %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<!-- <footer class="mx-auto ">
+  This is footer
+</footer> -->
+  </body>
+</html>

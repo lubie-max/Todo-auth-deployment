@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Details
+{% endblock title %}
+
+{% block body %}
+<div class="header-bar px-3  pt-4 mt-1 mx-auto">
+
+<div class="container mt-4 mb-4 py-4 ">
+    <div  class="card text-white bg-dark mb-3 mt-4  border-primary mx-auto " >
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{item.created_at}}</h6>
+          <span>&nbsp;</span>
+          <p class="card-text">{{item.description}}</p>
+
+          <a href="{% url 'delete-task' item.id  %}" class="card-link"><Button class="btn btn-outline-success btn-sm">Delete</Button></a>
+          <a href="{% url 'update-task' item.id  %}" class="card-link"><Button class="btn btn-outline-success btn-sm">Edit</Button></a>
+        </div>
+      </div>
+</div>
+</div>
+{% endblock body %}
+
